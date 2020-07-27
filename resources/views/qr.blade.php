@@ -9,7 +9,7 @@
            <div class="">
                <div class="d-flex flex-row flex-wrap">
                    
-                <form action="/" method="post">
+                <form action="/" enctype="multipart/form-data" method="post">
                     @csrf
                     <h4>質問したいボードゲームの名前</h4>
                     <input type="text" name="boardgamename">
@@ -18,6 +18,9 @@
                     
                     <h4>問題の箇所（該当の説明書の写真)</h4>
                     <input type="file" name="imgpath">
+                    
+                    <h4>個人の解釈（あれば）</h4>
+                    <textarea name="interpretation" id="" cols="30" rows="10"></textarea>
                     <input type="submit" value="質問する">
                 </form>
 

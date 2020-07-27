@@ -22,8 +22,24 @@ class PostController extends Controller
     //質問内容をDBに挿入する
     public function insert_qr(Request $request, Post $post)
     {   
-        $form = $request->all();
-        // dd($form);
+        // imgpath以外をとってくる
+        $form = $request->only('boardgamename','text','interpretation');
+        
+        // storeでやる
+        // $request->imgpath->store('public');
+        // $form['imgpath']= $request->imgpath->hashName();
+
+        // storeAsでやる
+        // オリジナルのファイルネームをとってきて、その名前でstorage/app/publicフォルダに突っ込む
+        //storeAsは第3引数まである。
+        $file_name=$request->imgpath->getClientOriginalName();
+        $form['imgpath']= $request->imgpath->storeAs('',$file_name,'public');
+    
+        // fileメソッド使っても使わなくても一緒？
+        // $file_name = $request->file('imgpath')->getClientOriginalName();
+        // $img = $request->file('imgpath')->storeAs('',$file_name,''public);
+        // $form['imgpath'] = $img;
+
         unset($form['_token']);
         $post->create($form);
         return redirect('/');
