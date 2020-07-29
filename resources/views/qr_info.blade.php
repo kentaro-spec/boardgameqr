@@ -16,11 +16,17 @@
                        <p>{{$questions->boardgamename}}</p>
                        <h2 style="font-size:1.1em; font-weight:bold; color:#555555;">発生している問題・質問</h2>
                        <div>{{$questions->text}}</div>
+
+                       @if(isset($questions->imgpath) )
                        <h2 style="font-size:1.1em; font-weight:bold; color:#555555;">画像などあれば</h2>
                        {{-- <img src="/image/{{$questions->imgpath}}" alt=""> --}}
                        <img src=" {{ asset('storage/'.$questions->imgpath)}}">
+                       @endif
+
+                       @if(isset($questions->interpretation))
                        <h2 style="font-size:1.1em; font-weight:bold; color:#555555;">個人の解釈</h2>
                        <div>{{$questions->interpretation}}</div>
+                       @endif
                </div>
            </div>
 
@@ -34,15 +40,21 @@
                @endforeach
            </div>
 
-           <h1>この質問に回答する(ログインしてる奴だけに表示させたい)
+           @if(Auth::check())
+           <h1>この質問に回答する
            </h1>
-        <form action="{{Route('show',['id' => $questions->id])}}" method="post">
+            <form action="{{Route('show',['id' => $questions->id])}}" method="post">
                @csrf
                <textarea name="text" id="" cols="30" rows="10"></textarea>
                 <input type="hidden" name="post_id" value="{{$questions->id}}">
                 <input type="hidden" name="user_id" value= "1">
                <input type="submit" value="回答する">
-        </form>
+               
+            </form>
+            @else
+            <p>質問するにはログインしてください</p>
+            <a href="/login">ログイン</a>|<a href="/register">新規登録</a>
+            @endif
        </div>
    </div>
 </div>

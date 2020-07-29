@@ -32,8 +32,10 @@ class PostController extends Controller
         // storeAsでやる
         // オリジナルのファイルネームをとってきて、その名前でstorage/app/publicフォルダに突っ込む
         //storeAsは第3引数まである。
-        $file_name=$request->imgpath->getClientOriginalName();
-        $form['imgpath']= $request->imgpath->storeAs('',$file_name,'public');
+        if(isset($request->imgpath)){
+            $file_name=$request->imgpath->getClientOriginalName();
+            $form['imgpath']= $request->imgpath->storeAs('',$file_name,'public');
+        }
     
         // fileメソッド使っても使わなくても一緒？
         // $file_name = $request->file('imgpath')->getClientOriginalName();
