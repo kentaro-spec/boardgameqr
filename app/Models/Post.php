@@ -11,12 +11,28 @@ class Post extends Model
         'id'
     ];
 
+    // usersテーブルへリレーション
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('\App\Models\User');
     }
-    public function posts()
+
+    public function answers()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany('\App\Models\Answer');
+    }
+    // boardgamesテーブルへリレーション
+    public function boardgame()
+    {
+        return $this->belongsTo('\App\Models\Boardgame');
+    }
+
+    //突っ込んだユーザーIDの質問を取ってくる
+    public function getUserQuestions($user_id){
+        return $this->where('user_id',$user_id)->get();
+    }
+    //突っ込んだユーザーIDの質問総数を取ってくる
+    public function getQuestionCount($user_id){
+        return $this->where('user_id',$user_id)->count();
     }
 }

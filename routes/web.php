@@ -25,6 +25,14 @@ Route::post('/','PostController@insert_qr');
 //質問詳細ページ
 Route::get('/qr/{id}','PostController@show_qr')->name('show');
 Route::post('/qr/{id}','PostController@answer_qr');
+//ユーザー詳細ページ
+Route::get('/user/{id}','PostController@show_user')->name('show_user');
+
+// ボードゲームページ
+Route::get('/boardgame/{id}','PostController@show_boardgame')->name('boardgame');
+
+//ベストアンサー
+Route::get('/bestanswer','PostController@store_bestanswer')->name('bestanswer');
 
 
 Auth::routes();

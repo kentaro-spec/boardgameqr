@@ -8,7 +8,12 @@
 
            <div class="mb-5">
                <h1>質問</h1>
-               <p>投稿日時:{{ $questions->created_at->format('Y-m-d H:i') }}</p> 
+               <p>投稿日時:{{ $questions->created_at->format('Y-m-d H:i') }}</p>
+               <p>
+                   質問者:
+                   <a href="{{ Route('show_user',['id' => $questions->user_id]) }}">{{ $questions->user->screen_name}}</a>
+               </p>
+               <p> {{ $questions->user->name }}</p>
     
                <div class="">
                    
@@ -30,13 +35,29 @@
                </div>
            </div>
 
-           {{-- @if({{count($answers)}} < 1)
-            
-           @else     --}}
-           <div class="mb-5"> 
+           <div class="mb-5">
                <h1>回答：{{count($answers)}}</h1>
                @foreach($answers as $answer)
-               {{$answer->text}}
+                <p>
+                   {{$answer->text}}
+                </p>
+               {{-- ベストアンサー --}}
+               {{-- $bestanserにtrueが入っている場合は、ベストアンサーだけ表示、falseが入っている場合は、どれをベストアンサーにするか選択できるように表示 --}}
+               
+                    @if( $bestanswer_flag === true)
+                            @if($answer->bestanswer_flag === 1)
+                            <button type="submit" class="btn p-0 border-0 text-danger" ><i class="material-icons">favorite</i></button>
+                            @endif 
+                    @else
+                        @if( $user_id === $questions->user_id )
+                            <form action=" {{ Route('bestanswer') }}">
+                                @csrf
+                                <input type="hidden" name="answer_id" value= {{ $answer->id }}>
+                                <button type="submit" class="btn p-0 border-0 text-primary" ><i class="material-icons">favorite_border</i></button>
+                            </form>
+                        @endif
+                    @endif
+
                @endforeach
            </div>
 
@@ -52,7 +73,7 @@
                
             </form>
             @else
-            <p>質問するにはログインしてください</p>
+            <p>質問・回答するにはログインしてください</p>
             <a href="/login">ログイン</a>|<a href="/register">新規登録</a>
             @endif
        </div>
