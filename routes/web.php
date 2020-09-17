@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // 一覧ページ
-Route::get('/', 'PostController@index');
+Route::get('/{tab?}', 'PostController@index')->where(['tab' => '(new|solved|unsolved)']);
+
 //質問ページ
 Route::get('/qr','PostController@qr')->name('qr');
 Route::post('/','PostController@insert_qr');
@@ -30,10 +31,13 @@ Route::get('/user/{id}','PostController@show_user')->name('show_user');
 
 // ボードゲームページ
 Route::get('/boardgame/{id}','PostController@show_boardgame')->name('boardgame');
-
+//ボードゲーム追加ページ
+Route::get('/boardgame_add','PostController@create_boardgame')->name('post_newbg');
+Route::post('/qr','PostController@add_boardgame')->name('add_newbg');
 //ベストアンサー
 Route::get('/bestanswer','PostController@store_bestanswer')->name('bestanswer');
-
+// 検索機能
+Route::get('/search','PostController@search_bgname')->name('search');
 
 Auth::routes();
 

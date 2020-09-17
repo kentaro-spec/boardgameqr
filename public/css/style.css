@@ -1,65 +1,196 @@
 @charset "utf-8";
 /* Material iconsを利用する */
 .material-icons {
-    font-family: 'Material Icons';
+    font-family: "Material Icons";
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;  /* 推奨サイズ */
+    font-size: 24px; /* 推奨サイズ */
     display: inline-block;
     width: 1em;
     height: 1em;
     line-height: 1;
     text-transform: none;
-   
+
     /* WebKitブラウザサポート */
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-sbody_wrapothing: antialiased;
     /* Chrome、Safariサポート */
     text-rendering: optimizeLegibility;
-   
+
     /* Firefoxサポート */
     -moz-osx-font-smoothing: grayscale;
-   
-    /* IEサポート */
-    font-feature-settings: 'liga';
-  }
 
-  .material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+    /* IEサポート */
+    font-feature-settings: "liga";
+}
+
+/* クロームの背景が水色になるやつを消す */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+.material-icons.md-24 {
+    font-size: 24px;
+}
+.material-icons.md-36 {
+    font-size: 36px;
+}
+.material-icons.md-48 {
+    font-size: 48px;
+}
 
 /* Rules for using icons as black on a light background. */
-.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
 
 /* Rules for using icons as white on a dark background. */
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
 
 /* Material icons おわり */
 
-nav {
-    background-color:#464c56; 
+/* footerを最下部に配置する */
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+}
+.app {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1;
 }
 
+/* 共通 */
+.flex {
+    display: flex;
+}
+.is-between {
+    justify-content: space-between;
+}
+.center {
+    align-items: center;
+}
+
+/* ヘッダー */
+.navbar-light .navbar-toggler {
+    border-color: rgba(0,0,0,0);
+}
+.navbar-light .navbar-toggler:focus {
+    outline: none;
+}
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+/* 検索 */
+.header_nav {
+    background-color: #464c56;
+}
+.header_form {
+    font-size: 12px;
+    border: 1px solid;
+    width: 200px;
+    border-radius: 5px;
+    padding: 3px 10px;
+    margin-left: 20px;
+    background: #fff;
+    position: relative;
+}
+.header_form input {
+    border: none;
+}
+.header_form input[type="text"] {
+    padding-right: 20px;
+}
+.header_form input[type="submit"] {
+    font-family: FontAwesome;
+    background: #fff;
+    position: absolute;
+    right: 5px;
+    top: 7px;
+}
+.search_results {
+    font-size: 24px;
+}
+@media screen and (max-width: 480px){
+    .header_list {
+        width: 100%;
+    }
+    .header_form input {
+        display: block;
+    }
+    .header_question_btn {
+        width: 300px;
+        margin: 20px 0;
+    }
+    .header_form {
+        width: 300px;
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+}
+
+/* ログイン・新規登録のアニメーション */
+.login,
+.register {
+    position: relative;
+}
+.login::after,
+.register::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: #fff;
+    left: 0;
+    bottom: -1px;
+    transition: 0.4s;
+    transform: scale(0, 1);
+    transform-origin: left top;
+}
+.login:hover::after,
+.register:hover::after {
+    transform: scale(1, 1);
+    transform-origin: right top;
+}
+
+
 /* メインビジュアル */
-.mv_cover { 
+.mv_cover {
     height: 600px;
     background-image: url(../img/boardgameqr_mv.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    /* margin-bottom: 50px; */
 }
 .mv_cover_filter {
     border-bottom: 4px solid #f4c51c;
-    background-color: rgba(0,0,0,0.4);
-    height: 600px;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 .mv_inner {
-    max-width: 1140px;
-    position: absolute;
-    top: 30%;
-    left: 10%;
+    display: flex;
+    max-width: 960px;
+    color: #fff;
+    margin: 0 auto;
 }
 .logo {
     font-size: 46px;
@@ -69,14 +200,593 @@ nav {
     display: block;
     font-weight: bold;
 }
-.inner_body h3 {
+.inner_body_maintxt {
     font-weight: bold;
+}
+.inner_body_maintxt::after {
+    border-right: 2px solid #f4c51c;
+    content: "";
+    margin-left: 5px;
+    animation: blink 1s ease-in-out 0s infinite alternate;
+}
+@keyframes blink {
+    0%,100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 .inner_left {
     border-bottom: 2px solid #fff;
+    margin-right: 40px;
+}
+.inner_right {
+    align-self: center;
+}
+.inner_right p {
+    text-align: center;
+}
+.inner_right a {
+    color: #fff;
+}
+.inner_right_or {
+    margin: 32px 0;
+    position: relative;
+
+}
+.inner_right_or::before, .inner_right_or::after {
+    width: 40%;
+    height: 1px;
+    background-color: #fff;
+    content: "";
+    position: absolute;
+}
+.inner_right_or::before {
+    left: 0;
+    top: calc(50% - 1px);
+}
+.inner_right_or::after {
+    right: 0;
+    top: calc(50% - 1px);
+}
+.mv_mailbtn {
+    padding: 10px 80px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.mv_snsregist {
+    font-weight: bold;
+}
+@media screen and (max-width: 896px) {
+    .mv_inner {
+        display: block;
+    }
+}
+@media screen and (max-width: 480px) {
+    .container {
+        margin-top: 20px;
+    }
+    .mv_cover {
+        height: 450px;
+        margin-bottom: 0;
+    }
+    .mv_inner {
+        max-width: 300px;
+        height: 450px;
+    }
+    .logo {
+        text-align: center;
+        padding-top: 50px;
+        font-size: 36px;
+    }
+    .logo span {
+        text-align: center;
+        font-size: 14px;
+    }
+    .inner_body h3 {
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .inner_left {
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+    .inner_right p {
+        text-align: center;
+    }
+    .btn a {
+        margin: 0 auto;
+    }
+}
+/* タブ */
+.tab_list {
+    border-bottom: 1px solid #ddd;
+}
+.tab_list li {
+    margin-right: 5px;
+    border-radius: 3px;
+}
+.tab_list li a {
+    /* border-radius: 3px; */
+    padding: 5px 20px;
+    color: #828e96;
+    background: #f5f7f9;
+    font-weight: bold;
+    font-size: 12px;
+    display: block;
+}
+/* 新着記事 */
+.tab_new.active a {
+    color: #333;
+    background:#fff;
+}
+.tab_new.active {
+    border-bottom: none;
+    margin-bottom: -2px;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+}
+/* 解決済 */
+.tab_solved.active a {
+    color: #333;
+    background:#fff;
+}
+.tab_solved.active {
+    border-bottom: none;
+    margin-bottom: -2px;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+}
+/* 未解決 */
+.tab_unsolved.active a {
+    color: #333;
+    background:#fff;
+}
+.tab_unsolved.active {
+    border-bottom: none;
+    margin-bottom: -2px;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+}
+/* 一覧ページ */
+.main_content {
+    padding: 50px 0;
+}
+.question_list {
+    border-bottom: 1px solid #ddd;
+}
+.user_content img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+/* 一覧ページ（サイドバー） */
+.category_title {
+    font-weight: bold;
+    font-size: 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #aaa;
+}
+
+/* 未解決 */
+.answer_count li {
+    text-align: center;
+}
+.answer_count li:last-child {
+    font-weight: bold;
+    font-size: 20px;
+}
+.accept {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    font-size: 10px;
+}
+.answer {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+
+/* 解決済み */
+.accept2 {
+    background-color: #e9606d;
+    font-weight: bold;
+    font-size: 10px;
+}
+.answer2 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #e9606d;
+}
+
+.answer_count2 li {
+    text-align: center;
+}
+.answer_count2 li:last-child {
+    font-weight: bold;
+    font-size: 20px;
+    color: #e9606d;
 }
 
 /* フッター */
 footer {
     background-color: #464c56;
+}
+/* ページトップボタン */
+.page_top {
+    width: 100px;
+    border-radius: 5px;
+    background: #464c56;
+    margin-left: auto;
+    text-align: center;
+}
+.page_top a {
+    display: block;
+    color: #fff;
+    text-align-last: center;
+    text-decoration: none;
+}
+.page_top span {
+    width: 100%;
+    display: block;
+    color: #fff;
+}
+/* ランキング */
+.ranking_wrap {
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+.ranking_wrap img {
+    margin-left: 40px;
+}
+.pagination {
+    justify-content: center;
+    background-color: #fff;
+}
+.ranking_first {
+    background: #fbdb01;
+    padding: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ranking_first:after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 8px;
+    border-color: transparent transparent #fff;
+}
+.ranking_second {
+    background: silver;
+    padding: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ranking_second:after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 8px;
+    border-color: transparent transparent #fff;
+}
+.ranking_third {
+    background: #bda37f;
+    padding: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ranking_third:after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 8px;
+    border-color: transparent transparent #fff;
+}
+
+/* ボードゲーム タグ */
+.boardgame_tag_wrap {
+    border-bottom: 1px solid #ddd;
+}
+.boardgame_tag {
+    background-color: #d5e9f7;
+    border: 1px solid #b8dbf2;
+    color: #333;
+    border-radius: 3px;
+    font-size: 10px;
+    padding: 1px 4px;
+    transition: background-color .2s ease,border-color .2s ease;
+}
+.boardgame_tag:hover {
+    background-color: #b8dbf2;
+    border-color: #8ac4eb;
+    color: #333;
+    text-decoration: none;
+}
+.boradgame_tag_post {
+    font-weight: 700;
+}
+.boradgame_tag_post:nth-child(2) {
+    font-size: 11px;
+}
+/* ペジネーション */
+.page-link {
+    color:#333 ;
+    font-weight: bold;
+}
+
+
+/* <====== 質問詳細ページ =====> */
+.qr_info_mv {
+    background: url(../img/boardgameqr_mv.jpg) no-repeat;
+    height: 300px;
+    background-size: cover;
+    position: relative;
+}
+.qr_info_mv::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+.qr_info_mv h2 {
+    color: #fff;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.inner {
+    max-width: 1096px;
+    margin: 0 auto;
+}
+
+.question_left_answer {
+    font-weight: bold;
+    margin-right: 5px;
+}
+.question_left_time {
+    font-size: 12px;
+}
+.question_left_answer span {
+    color: #e9606d;
+    padding: 0 5px;
+}
+.question_left_bgname {
+    font-size: 14px;
+}
+.question_left_bgname a {
+    padding-left: 5px;
+    font-weight: bold;
+}
+.question_right {
+    align-self: flex-end;
+}
+.question_right img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.questionWrap {
+    background-color: #efefef;
+    margin-bottom: 40px;
+}
+.question {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.questions_text {
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+.question_inner {
+    max-width: 800px;
+    padding: 20px 0;
+}
+.qr_info_answer {
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+.qr_info_answer span {
+    color: #e9606d;
+    padding: 0 10px;
+}
+.bestanswer_check {
+    align-items: center;
+    color: #e9606d;
+    font-weight: bold;
+}
+.bestanswer_check i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+.questions_ul_wrap li {
+    margin-bottom: 40px;
+}
+.questions_ul_wrap h2 {
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+.answerWrap {
+    margin-top: 50px;
+}
+.answer_text {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.not_answer {
+    border: 3px dotted #ddd;
+    padding: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+/* 質問投稿ページ */
+.qr_inner {
+    max-width: 600px;
+    margin: 30px auto;
+    /* background-color: #ddd; */
+}
+.qr_inner h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+.question_form p {
+    font-weight: bold;
+    font-size: 14px;
+}
+.question_form li {
+    margin-bottom: 20px;
+}
+
+.question_form span {
+    display: block;
+    /* margin-left: 10px; */
+    background: #e7413c;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 0 5px;
+    width: 30px;
+    margin-bottom: 5px;
+}
+.question_form input {
+    border: 1px solid #000;
+    padding: 10px;
+    width: 330px;
+}
+.question_form textarea {
+    border: 1px solid #000;
+    padding: 10px;
+    width: 330px;
+    resize: none;
+}
+.question_title p:nth-child(2) {
+    color: #777;
+}
+.question_bgname select {
+    border: 1px solid #000;
+    padding: 10px;
+}
+.question_bgname p:nth-child(3) {
+    font-size: 12px;
+    color: #777;
+}
+.question_btn {
+    text-align: center;
+}
+.question_btn input {
+    border-radius: 50px;
+    display: inline-block;
+    color: #fff;
+    width: 250px;
+    background: #000;
+    padding: 10px;
+    border: none;
+    font-weight: bold;
+}
+.register_btn p {
+    font-size: 12px;
+    color: #777;
+}
+.qr_info_accept_tag {
+    background: #ddd;
+    font-weight: bold;
+    font-size: 10px;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-right: 5px;
+}
+.qr_info_answer_tag {
+    color: #fff;
+    background: #e9606d;
+    font-weight: bold;
+    font-size: 10px;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-right: 5px;
+}
+.post_answer_wrap {
+    margin-top: 50px;
+}
+.post_answer_wrap img {
+    margin-right: 30px;
+}
+.post_answer_wrap p {
+    font-weight: bold;
+    /* background: #efefef; */
+    padding: 10px;
+}
+.post_answer_wrap textarea {
+    border: 1px solid #000;
+    width: 500px;
+    padding: 10px;
+    resize: none;
+    margin-bottom: 50px;
+}
+/* プロフィールページ */
+.profile_wrap {
+    text-align: center;
+    border: 1px solid #ddd;
+    width: 200px;
+    padding: 10px;
+}
+.profile_wrap p {
+    text-align: center;
+}
+.profile_wrap img {
+    width: 100px;
+}
+.profile_wrap_name {
+    font-weight: bold;
+    font-size: 18px;
+}
+.user_boxSelectTab li {
+    border: 1px solid #ddd;
+    width: 120px;
+}
+.user_boxSelectTab p {
+    text-align: center;
+}
+.user_boxSelectTab span {
+    font-weight: bold;
+    font-size: 12px;
+}
+.user_btnNum {
+    font-size: 20px;
+    color: #117ec6;
+    font-weight: bold;
+}
+.mypageBody {
+    background: #fafafa;
 }

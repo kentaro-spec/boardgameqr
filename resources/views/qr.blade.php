@@ -1,32 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
-   <div class="">
-       <div class="mx-auto" style="max-width:1200px">
-           <h1 style="color:#555555; text-align:center; font-size:1.2em; padding:24px 0px; font-weight:bold;">質問投稿画面</h1>
-           
-           <div class="">
-               <div class="d-flex flex-row flex-wrap">
-                   
-                <form action="/" enctype="multipart/form-data" method="post">
-                    @csrf
-                    <h4>質問したいボードゲームの名前</h4>
-                    <input type="text" name="boardgamename">
-
-                    <h4>質問内容を記入する</h4> <textarea name="text" id="" cols="30" rows="10"></textarea>
-                    
-                    <h4>問題の箇所（該当の説明書の写真)</h4>
+<div class="container">
+    <div class="qr_inner">
+        <h2>質問の投稿</h2>  
+        <form action="/" enctype="multipart/form-data" method="post">
+            @csrf
+            <ul  class="question_form">
+                <li class="question_bgname">
+                        <p>質問したいボードゲーム名<span>必須</span></p>
+                        <select name="boardgame_id" required>
+                                <option value="">ボードゲームを選択する</option>
+                            @foreach ($boardgames as $boardgame)
+                                <option value="{{ $boardgame->id }}">{{ $boardgame->name }}</option>
+                            @endforeach
+                            {{-- <input type="hidden" name="boardgame_id" value="{{ $boardgame->id}}"> --}}
+                        </select>
+                        <p>質問したいボードゲームがなかった場合は<a href="{{ Route("post_newbg")}}">こちら</a>から追加してください</p>
+                </li>
+                
+                <li class="question_title">
+                    <p>タイトル<span>必須</span></p>
+                    <p>50文字以内で書いてください</p>
+                    <input type="text" name="title">
+                </li>
+                <li>
+                    <p>質問内容<span>必須</span></p> <textarea name="text" id="" cols="30" rows="10" required></textarea>
+                </li>
+                <li>
+                    <p>問題の箇所の写真等</p>
                     <input type="file" name="imgpath">
-                    
-                    <h4>個人の解釈（あれば）</h4>
+                </li>
+                <li>
+                    <p>個人の解釈</p>
                     <textarea name="interpretation" id="" cols="30" rows="10"></textarea>
-                    <input type="submit" value="質問する">
-                </form>
-
-               </div>
-           </div>
-       </div>
-   </div>
+                    <input type="hidden" name="user_id" value="{{ Auth::id()}}">
+                </li>
+            </ul>
+            @guest
+                <div class="register_btn">
+                    <div><a href="{{ route('register') }}">新規会員登録</a>・<a href="{{ route('login')}}">ログイン</a>して質問する。</div>
+                    <p>新規会員登録・ログイン後に質問することができます。</p>
+                </div>
+            @endguest
+            @auth
+                <div class="question_btn"><input type="submit" value="質問する"></div>
+            @endauth
+        </form>
+    </div>
 </div>
 @endsection

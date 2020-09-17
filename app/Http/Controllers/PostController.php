@@ -12,29 +12,37 @@ use App\Models\Boardgame;
 class PostController extends Controller
 {
     //一覧ページ
-    public function index()
-    {   
-        // $posts = Post::all();
+    public function index($tab = 'new')
+    {    
         
-        //Eagerローディング 
-        $posts = Post::with('user')->get();
-        return view('post',compact('posts'));
+        // ユーザランキングのデータ 人数増えたら5人まで
+        $users = User::orderBy('ranking_point','desc')->limit(3)->get();
+        // ボードゲームタグのデータ こっちも質問が多いゲーム5人くらい
+        $boardgames = Boardgame::with(['posts'])->orderBy('post_count','desc')->limit(5)->get();
+        // dd($boardgames);
+        //Eagerローディング
+        $posts = Post::with(['user','boardgame','answers'])->question($tab)->orderBy('posts.created_at','desc')->paginate(6);
+        // dd($posts);
+
+        return view('post',compact('posts' , 'users' , 'boardgames','tab'));
     }
     //質問ページ
     public function qr()
     {
-        return view('qr');
+        // ボードゲームテーブルから全ボードゲームを引っ張ってくる(質問したいボードゲームの名前で使う)
+        $boardgames = Boardgame::all();
+        return view('qr',[ 'boardgames' => $boardgames]);
     }
     //質問内容をDBに挿入する
     public function insert_qr(Request $request, Post $post)
     {   
         // imgpath以外をとってくる
-        $form = $request->only('boardgamename','text','interpretation');
-        
+        $form = $request->only('title','text','interpretation','user_id','boardgame_id');
+        // dd($form);
         // storeでやる
         // $request->imgpath->store('public');
         // $form['imgpath']= $request->imgpath->hashName();
-
+        
         // storeAsでやる
         // オリジナルのファイルネームをとってきて、その名前でstorage/app/publicフォルダに突っ込む
         //storeAsは第3引数まである。
@@ -42,14 +50,18 @@ class PostController extends Controller
             $file_name=$request->imgpath->getClientOriginalName();
             $form['imgpath']= $request->imgpath->storeAs('',$file_name,'public');
         }
-    
+        
         // fileメソッド使っても使わなくても一緒？
         // $file_name = $request->file('imgpath')->getClientOriginalName();
         // $img = $request->file('imgpath')->storeAs('',$file_name,''public);
         // $form['imgpath'] = $img;
-
+        
         unset($form['_token']);
         $post->create($form);
+        // boardgameテーブルのpost_countにプラス1をする。
+        $bg_id = $request->boardgame_id;
+        $boardgame = Boardgame::find($bg_id);
+        $boardgame->increment('post_count');
         return redirect('/');
     }
 
@@ -57,7 +69,8 @@ class PostController extends Controller
     public function show_qr(Request $request, Answer $answer)
     {
         $post_id = $request->id;
-        $questions = Post::find($post_id);
+        $questions = Post::with(['boardgame'])->find($post_id);
+        // dd($questions);
         $answers = Answer::where('post_id', $post_id)->get();
         
 
@@ -98,12 +111,14 @@ class PostController extends Controller
         return view('user_show',['questions' => $questions,'questions_count' => $questions_count, 'answers' => $answers, 'answers_count' => $answers_count, 'user' => $user]);
     }
 
-
-    public function show_boardgame(Request $request)
+    // ボードゲームカテゴリページへ
+    public function show_boardgame(Request $request , Post $post)
     {
         $bd_id = $request->id;
         $boardgame = Boardgame::find($bd_id);
-        return view('bg_show',['boardgame' => $boardgame]);
+        $posts = Post::with(['boardgame','user'])->where('boardgame_id', $bd_id)->get();
+        // dd($posts);
+        return view('bg_show',['boardgame' => $boardgame, 'posts' => $posts]);
     }
 
     // ベストアンサーをつける
@@ -113,7 +128,42 @@ class PostController extends Controller
         $answer = Answer::find($answer_id);
         $answer->bestanswer_flag = 1;
         $answer->save();
+
+        // 質問者のランキングポイントにプラス1をする
+        $user_id = $request->user_id;
+        $user =  User::find($user_id)->first();
+        $user->ranking_point += 1;
+        $user->save();
         return back();
+    }
+
+    // 検索機能
+    public function search_bgname(Request $request)
+    {
+        $bg_name = $request->bg_name;
+        if( $bg_name !=''){
+            $posts = Post::whereHas('boardgame', function($value) use ($bg_name){
+                $value->where('name','like','%'.$bg_name.'%');})->get();
+        }
+        else{
+            return back();
+        }
+        // dd($posts);
+        return view('search',['posts' => $posts,'bg_name' => $bg_name]);
+    }
+    //新しくボードゲームを追加するページへ飛ばす。
+    public function create_boardgame()
+    {
+        return view('create_bgname');
+    }
+    //新しくボードゲームをDBに追加する
+    public function add_boardgame(Request $request ,Boardgame $boardgames)
+    {
+        $bgname = $request->only(['name']);
+        unset($bgname[('_token')]);
+
+        $boardgames->create($bgname);
+        return redirect('qr');
     }
 }
 

@@ -10,4 +10,10 @@ class Boardgame extends Model
     protected $guarded = [
         'id'
     ];
+
+    // postテーブルへリレーション
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }
