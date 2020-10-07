@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Answer;
 use App\Models\User;
 use App\Models\Boardgame;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -24,7 +25,18 @@ class PostController extends Controller
         $posts = Post::with(['user','boardgame','answers'])->question($tab)->orderBy('posts.created_at','desc')->paginate(6);
         // dd($posts);
 
-        return view('post',compact('posts' , 'users' , 'boardgames','tab'));
+        $times = [];
+
+        foreach($posts as $post){
+            Carbon::setLocale('ja');
+            $carbon = Carbon::parse($post->created_at);
+            $now = Carbon::now();
+            $time = $carbon->diffForHumans($now);
+            $times[] =  $time;
+        };
+        // dd($times);
+
+        return view('post',compact('posts' , 'users' , 'boardgames','tab', 'times'));
     }
     //質問ページ
     public function qr()
@@ -71,7 +83,7 @@ class PostController extends Controller
         $post_id = $request->id;
         $questions = Post::with(['boardgame'])->find($post_id);
         // dd($questions);
-        $answers = Answer::where('post_id', $post_id)->get();
+        $answers = Answer::with(['user'])->where('post_id', $post_id)->get();
         
 
         $user_id = Auth::id();
@@ -103,12 +115,15 @@ class PostController extends Controller
     public function show_user(Request $request,Post $post, Answer $answer, User $user)
     {
         $user_id = $request->id;
-        $questions = $post->getUserQuestions($user_id);
+        // 質問一覧をとってくる
+        $posts = $post->getUserQuestions($user_id);
         $questions_count = $post->getQuestionCount($user_id);
+        // 自分が回答した質問をとってくる
         $answers = $answer->getUserAnswers($user_id);
+        // dd($answers);
         $answers_count = $answer->getAnswersCount($user_id);
         $user = User::find($user_id);
-        return view('user_show',['questions' => $questions,'questions_count' => $questions_count, 'answers' => $answers, 'answers_count' => $answers_count, 'user' => $user]);
+        return view('user_show',['posts' => $posts,'questions_count' => $questions_count, 'answers' => $answers, 'answers_count' => $answers_count, 'user' => $user]);
     }
 
     // ボードゲームカテゴリページへ
@@ -159,6 +174,11 @@ class PostController extends Controller
     //新しくボードゲームをDBに追加する
     public function add_boardgame(Request $request ,Boardgame $boardgames)
     {
+        $validate_rule = [
+            'name' => 'unique:boardgames,name'
+        ];
+        $this->validate($request, $validate_rule);
+
         $bgname = $request->only(['name']);
         unset($bgname[('_token')]);
 

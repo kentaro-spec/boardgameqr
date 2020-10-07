@@ -22,7 +22,7 @@
                 <li class="question_title">
                     <p>タイトル<span>必須</span></p>
                     <p>50文字以内で書いてください</p>
-                    <input type="text" name="title">
+                    <input type="text" name="title" required>
                 </li>
                 <li>
                     <p>質問内容<span>必須</span></p> <textarea name="text" id="" cols="30" rows="10" required></textarea>

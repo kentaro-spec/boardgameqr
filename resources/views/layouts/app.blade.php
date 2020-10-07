@@ -46,7 +46,7 @@
         <div class="container">
             
             <div class="page_top" id="page_top"><a href="#"><span class="material-icons">
-                keyboard_arrow_up</span> Page top</a></div>
+                keyboard_arrow_up</span> PAGE TOP</a></div>
         </div>
 
         {{-- フッター --}}

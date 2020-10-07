@@ -173,7 +173,7 @@ main {
 /* メインビジュアル */
 .mv_cover {
     height: 600px;
-    background-image: url(../img/boardgameqr_mv.jpg);
+    background-image: url(../storage/boardgameqr_mv.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -361,12 +361,24 @@ main {
     height: 20px;
     margin-right: 5px;
 }
+.user_content a {
+    color: #333;
+}
 /* 一覧ページ（サイドバー） */
 .category_title {
     font-weight: bold;
     font-size: 12px;
     padding-bottom: 5px;
     border-bottom: 1px solid #aaa;
+}
+.ranking_body p {
+    font-size: 12px;
+    letter-spacing: .05em;
+}
+.ranking_body a {
+    color: #333;
+    font-weight: bold;
+    font-size: 12px;
 }
 
 /* 未解決 */
@@ -415,17 +427,20 @@ footer {
 }
 /* ページトップボタン */
 .page_top {
-    width: 100px;
-    border-radius: 5px;
+    width: 72px;
+    font-size: 10px;
     background: #464c56;
+    border-radius: 3px 3px 0 0;
     margin-left: auto;
     text-align: center;
 }
 .page_top a {
+    letter-spacing: 0.05em;
     display: block;
     color: #fff;
     text-align-last: center;
     text-decoration: none;
+    padding-bottom: 3px;
 }
 .page_top span {
     width: 100%;
@@ -445,6 +460,7 @@ footer {
     background-color: #fff;
 }
 .ranking_first {
+    font-size: 12px;
     background: #fbdb01;
     padding: 5px;
     font-weight: bold;
@@ -464,6 +480,7 @@ footer {
     border-color: transparent transparent #fff;
 }
 .ranking_second {
+    font-size: 12px;
     background: silver;
     padding: 5px;
     font-weight: bold;
@@ -483,6 +500,7 @@ footer {
     border-color: transparent transparent #fff;
 }
 .ranking_third {
+    font-size: 12px;
     background: #bda37f;
     padding: 5px;
     font-weight: bold;
@@ -631,9 +649,9 @@ footer {
     margin-bottom: 40px;
 }
 .questions_ul_wrap h2 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #efefef;
     padding-bottom: 5px;
 }
 .answerWrap {
@@ -650,6 +668,7 @@ footer {
     font-weight: bold;
     text-align: center;
 }
+
 /* 質問投稿ページ */
 .qr_inner {
     max-width: 600px;
@@ -755,6 +774,9 @@ footer {
     margin-bottom: 50px;
 }
 /* プロフィールページ */
+.mypageHead {
+    border-bottom: 1px solid #ddd;
+}
 .profile_wrap {
     text-align: center;
     border: 1px solid #ddd;
@@ -771,8 +793,14 @@ footer {
     font-weight: bold;
     font-size: 18px;
 }
+.user_boxSelectTab {
+    align-self: flex-end;
+}
+.user_boxSelectTab ul {
+    margin-left: 20px;
+    margin-bottom: 0;
+}
 .user_boxSelectTab li {
-    border: 1px solid #ddd;
     width: 120px;
 }
 .user_boxSelectTab p {
@@ -789,4 +817,25 @@ footer {
 }
 .mypageBody {
     background: #fafafa;
+}
+.user_question_wrap {
+    border: 1px solid #ddd;
+    background: #fff;
+    margin-top: 30px;
+}
+.user_question_wrap_question {
+    font-size: 20px;
+    padding: 16px 16px 8px;
+}
+/* ボードゲームカテゴリーページ */
+.bg_show_wrap {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 16px 24px;
+    border-radius: 6px;
+    margin-bottom: 40px;
+}
+.bg_show_title {
+    font-size: 24px;
+    font-weight: bold;
 }

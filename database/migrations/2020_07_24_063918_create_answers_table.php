@@ -19,6 +19,7 @@ class CreateAnswersTable extends Migration
             $table->unsignedInteger('user_id')->comment('ユーザーID');
             $table->unsignedInteger('post_id')->comment('ポストID');
             $table->string('text')->comment('回答');
+            $table->unsignedInteger('bestanswer_flag')->comment('ベストアンサーフラッグ');
         });
     }
 

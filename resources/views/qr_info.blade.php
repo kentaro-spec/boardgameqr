@@ -35,18 +35,18 @@
         <div class="col-8">
             <ul class="questions_ul_wrap">
                 <li>
-                    <h2>質問</h2>
+                    <h2 class="qr_info_heading">質問</h2>
                     <p>{{$questions->text}}</p>
                 </li>
                 <li>
                     @if(isset($questions->interpretation))
-                    <h2>個人の解釈</h2>
+                    <h2 class="qr_info_heading">個人の解釈</h2>
                     <div>{{$questions->interpretation}}</div>
                     @endif
                 </li>
                 <li>
                     @if(isset($questions->imgpath) )
-                    <h2 style="font-size:1.1em; font-weight:bold; color:#555555;">画像などあれば</h2>
+                    <h2 class="qr_info_heading">画像など</h2>
                     {{-- <img src="/image/{{$questions->imgpath}}" alt=""> --}}
                     <img src=" {{ asset('storage/'.$questions->imgpath)}}">
                     @endif
@@ -82,8 +82,8 @@
                 <p class="mb-3">{{$answer->text}}</p>
                 <div class="d-flex justify-content-end">
                     <p>投稿{{ $answer->created_at }}</p>
-                    {{-- <p><img src="{{ $questions->user->profile_image}}" alt=""></p>
-                    <p><a href="">{{ $questions->user->screen_name }}</a></p> --}}
+                 <p><img src="{{ $answer->user->profile_image }}" alt=""></p> 
+                   <p><a href="">{{ $answer->user->screen_name }}</a></p>
                 </div>
             </div>
             @endforeach
@@ -91,7 +91,6 @@
                 {{-- 質問者は回答できないようにする --}}
             @if(Auth::check())
                 @if(Auth::id() !== $questions->user_id)
-
                 <div class="flex post_answer_wrap">
                     <div><img src="{{Auth::user()->profile_image}}" alt=""></div>
                     <div>
@@ -100,7 +99,7 @@
                             @csrf
                             <textarea name="text" id="" cols="30" rows="10"></textarea>
                             <input type="hidden" name="post_id" value="{{$questions->id}}">
-                            <input type="hidden" name="user_id" value= "1">
+                            <input type="hidden" name="user_id" value= "{{ Auth::id()}}">
                             <div class="question_btn"><input type="submit" value="回答する" required></div>
                         </form>
                     </div>

@@ -5,7 +5,8 @@
 {{-- メインビジュアル始め --}}
 @guest
 <div class="mv_cover">
-    {{-- <img src="{{ asset('img/boardgameqr_mv.jpg')}}" class="w-100" alt=""> --}}
+    {{-- <img src="{{ asset("ドミニオン.jpg") }}>/ --}}
+    {{-- <img src="{{ asset('storage/ドミニオン.jpg')}}" class="w-100" alt=""> --}}
     <div class="mv_cover_filter">
         <div class="mv_inner">
             <div class="inner_left">
@@ -57,7 +58,7 @@
         <div class="row">
             <div class="col-sm-9">
                 <ul>
-                    @foreach($posts as $post)
+                    @foreach($posts as $key => $post)
                             <li  class="question_list d-flex py-3">
                                 <div class="question_list_head">
                                     @php
@@ -91,6 +92,7 @@
                                     @endif
                                 </div>
                                 {{-- 回答受付マーク終わり --}}
+                                {{--  質問一覧始め --}}
                                 <div class= "question_list_body pl-4 w-75">
                                     <a href="{{ Route('show',['id' => $post->id]) }}" class="">
                                         <h4 class="font-weight-bold">{{$post->title}}</h4>
@@ -100,15 +102,17 @@
                                     </a>
                                     <div class="d-flex justify-content-end user_content">
                                         <p><img src="{{ $post->user->profile_image }}" alt=""></p>
-                                        <p class="mr-3">{{ $post->user->screen_name}}</p>
-                                        <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
+                                        <p class="mr-3 "><a href="{{ Route('show_user',['id' => $post->user->id])}}">{{ $post->user->screen_name}}</a></p>
+                                        
+                                            {{ $times[$key] }}
                                     </div>
                                 </div>
+                                {{--  質問一覧終わり --}}
                             </li>
                     @endforeach
                 </ul>
             </div>
-                
+
             {{-- サイドバー --}}
             <div class="col-sm-3">
                 <div class="mb-5">
@@ -127,7 +131,7 @@
                 </div>
 
                 <div class="user_ranking ">
-                    <p class="category_title">ユーザーランキング</p>  
+                    <p class="category_title">ユーザーランキング</p>
                     @foreach($users as $key => $user)
                         <div class="ranking_wrap py-2">
                             <div class="flex">
