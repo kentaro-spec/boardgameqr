@@ -55,9 +55,10 @@
                                 <a href="{{ Route('show',['id' => $post->id]) }}" class="">
                                     <h4 class="font-weight-bold">{{$post->title}}</h4>
                                 </a>
-                                <div class="d-flex justify-content-end">
+                                <div class="d-flex justify-content-end user_content">
+                                    <p><img src="../storage/{{$post->user->profile_image}}" alt=""></p>
                                     <a class = 'mr-3 text-dark' href="{{ Route('show_user',['id' => $post->user->id]) }}">{{ $post->user->screen_name}}</a>
-                                    <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
+                                    <p>{{ $post->created_at->format('Y/m/d H:i') }}</p>
                                 </div>
                             </div>
                         </li>

@@ -19,6 +19,9 @@ class Answer extends Model
     {
         return $this->belongsTo('\App\Models\Post');
     }
+    public function comments(){
+        return $this->hasMany('\App\Models\Comment');
+    }
 
     //突っ込んだユーザーIDの回答を取ってくる
     public function getUserAnswers($user_id){

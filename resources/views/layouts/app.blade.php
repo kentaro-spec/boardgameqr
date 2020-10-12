@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,14 +45,23 @@
 
         {{-- ページトップボタン --}}
         <div class="container">
-            
+
             <div class="page_top" id="page_top"><a href="#"><span class="material-icons">
-                keyboard_arrow_up</span> PAGE TOP</a></div>
+                        keyboard_arrow_up</span> PAGE TOP</a></div>
         </div>
 
         {{-- フッター --}}
         <footer>
             <div class="container  py-4">
+                <div class="contact_wrap">
+                    <form action="">
+                        @csrf
+                        <textarea class="contact" name="" id="" cols="30" rows="6"
+                            placeholder="boardgameQrについてご意見お聞かせください"></textarea>
+                        <input class="contact_btn" type="submit" value="送信">
+                    </form>
+                    <p>頂いたご意見への回答は行っておりません。</p>
+                </div>
                 <p class="text-white text-center">2020 Copyright BoardgameQR</p>
             </div>
         </footer>
@@ -59,6 +69,7 @@
 
     </div>
     {{-- ページトップボタンのjQuery --}}
+
     <script>
         $(function(){
             $('#page_top').click(function(){
@@ -67,4 +78,5 @@
         });
     </script>
 </body>
+
 </html>

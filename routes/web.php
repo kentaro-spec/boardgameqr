@@ -38,7 +38,8 @@ Route::post('/boardgame_add','PostController@add_boardgame')->name('add_newbg');
 Route::get('/bestanswer','PostController@store_bestanswer')->name('bestanswer');
 // 検索機能
 Route::get('/search','PostController@search_bgname')->name('search');
-
+// コメント
+Route::post('/comment','PostController@comment_insert')->name('comment_insert');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

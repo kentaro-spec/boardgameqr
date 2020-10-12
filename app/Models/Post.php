@@ -53,7 +53,6 @@ class Post extends Model
                              ->from('answers')
                              ->where('bestanswer_flag', '=' , 1);
             });
-            
         }
     }
 }

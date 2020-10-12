@@ -97,6 +97,14 @@ main {
 .navbar-light .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
+
+.nav_profile_img img {
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
 /* 検索 */
 .header_nav {
     background-color: #464c56;
@@ -251,9 +259,18 @@ main {
     top: calc(50% - 1px);
 }
 .mv_mailbtn {
-    padding: 10px 80px;
     font-weight: bold;
     font-size: 14px;
+    background :#117ec6 none;
+    border: none;
+    border-radius: 3px;
+}
+.mv_mailbtn:hover {
+    background-color: #106dab;
+}
+.mv_mailbtn a {
+    padding: 10px 60px;
+    display: block;
 }
 .mv_snsregist {
     font-weight: bold;
@@ -554,7 +571,7 @@ footer {
 
 /* <====== 質問詳細ページ =====> */
 .qr_info_mv {
-    background: url(../img/boardgameqr_mv.jpg) no-repeat;
+    background: url(../storage/boardgameqr_mv.jpg) no-repeat;
     height: 300px;
     background-size: cover;
     position: relative;
@@ -662,11 +679,37 @@ footer {
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
+.answer_text_time {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin-right: 5px;
+}
 .not_answer {
     border: 3px dotted #ddd;
     padding: 20px;
     font-weight: bold;
     text-align: center;
+}
+.show_comment_wrap {
+    margin: 50px 0  50px 72px;
+    border-top: 2px solid #efefef;
+}
+.show_comment_body {
+    padding: 15px;
+}
+.show_comment_wrap img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.show_comment_title {
+    font-weight: bold;
+}
+.show_comment_title span {
+    font-size: 10px;
+}
+.show_comment_wrap p {
+    /* border-bottom: 1px solid #ddd */
 }
 
 /* 質問投稿ページ */
@@ -838,4 +881,61 @@ footer {
 .bg_show_title {
     font-size: 24px;
     font-weight: bold;
+}
+
+/* コメントラップ */
+.comment_wrap {
+    margin-bottom: 30px;
+}
+.comment_wrap p {
+    text-align: right;
+}
+.comment_wrap form  {
+    text-align: right;
+}
+.commnet_textarea {
+    border: 2px solid #ddd;
+}
+.comment_btn {
+    text-align: right;
+}
+.comment_btn input {
+    border-radius: 3px;
+    display: inline-block;
+    color: #fff;
+    width: 100px;
+    background: #117ec6;
+    border: none;
+    font-weight: bold;
+    padding: 0 8px;
+    line-height: 32px;
+}
+/* お問い合わせフォーム */
+.contact {
+    background: #fff;
+    height: 98px;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 3px;
+    width: 300px;
+}
+.contact_wrap {
+    margin: 0 0 0 auto;
+    width: 300px;
+}
+.contact_wrap p {
+    font-size: 12px;
+    color: #fff;
+    margin-top: 5px;
+}
+.contact_btn {
+    display: block;
+    background-color: #aaa;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 0;
+    width: 300px;
+    margin-top: 5px;
 }

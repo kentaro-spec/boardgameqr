@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Answer;
 use App\Models\User;
 use App\Models\Boardgame;
+use App\Models\Comment;
 use Carbon\Carbon;
 
 class PostController extends Controller
@@ -78,13 +79,13 @@ class PostController extends Controller
     }
 
     //質問詳細ページへ
-    public function show_qr(Request $request, Answer $answer)
+    public function show_qr(Request $request, Answer $answer, Comment $comment)
     {
         $post_id = $request->id;
         $questions = Post::with(['boardgame'])->find($post_id);
         // dd($questions);
-        $answers = Answer::with(['user'])->where('post_id', $post_id)->get();
-        
+        $answers = Answer::with(['user','comments'])->where('post_id', $post_id)->get();
+        // dd($answers);
 
         $user_id = Auth::id();
         // flagに1が入っている場合はtrueを返す。
@@ -94,7 +95,7 @@ class PostController extends Controller
         }else{
              $bestanswer_flag = true;
         }
-        return view('qr_info',['questions' => $questions,'answers' => $answers, 'bestanswer_flag' => $bestanswer_flag, 'user_id' => $user_id ]);
+        return view('qr_info',['questions' => $questions,'answers' => $answers, 'bestanswer_flag' => $bestanswer_flag, 'user_id' => $user_id]);
 
     }
 
@@ -184,6 +185,16 @@ class PostController extends Controller
 
         $boardgames->create($bgname);
         return redirect('qr');
+    }
+
+    // 回答に対するコメントをDBに挿入
+    public function comment_insert(Request $request, Comment $comment)
+    {
+        $comment_data = $request->only(['text','user_id','answer_id']);
+        unset($comment_data[('_token')]);
+
+        $comment->create($comment_data);
+        return back();
     }
 }
 
