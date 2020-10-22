@@ -9,11 +9,11 @@
         <div class="mv_inner">
             <div class="inner_left">
                 <div class="mb-5">
-                    <h1 class="logo"><span>ボードゲームルールQ&Aサイト</span>BoardgameQR</h1>
+                    <h1 class="logo"><span>ボードゲームルールQ&Aサイト</span>BoardgameQA</h1>
                 </div>
                 <div class="inner_body">
                     <h3 class="inner_body_maintxt">「このゲームのここがわからない」を解決する</h3>
-                    <p>BoardgameQRは、ボードゲームのルールでわからないところを解決するQ＆Aサイトです。</p>
+                    <p>BoardgameQAは、ボードゲームのルールでわからないところを解決するQ＆Aサイトです。</p>
                 </div>
             </div>
             <div class="inner_right">

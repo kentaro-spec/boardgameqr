@@ -57,12 +57,12 @@
                     <form action="">
                         @csrf
                         <textarea class="contact" name="" id="" cols="30" rows="6"
-                            placeholder="boardgameQrについてご意見お聞かせください"></textarea>
+                            placeholder="BoardgameQAについてご意見お聞かせください"></textarea>
                         <input class="contact_btn" type="submit" value="送信">
                     </form>
                     <p>頂いたご意見への回答は行っておりません。</p>
                 </div>
-                <p class="text-white text-center">2020 Copyright BoardgameQR</p>
+                <p class="text-white text-center">2020 Copyright BoardgameQA</p>
             </div>
         </footer>
 
