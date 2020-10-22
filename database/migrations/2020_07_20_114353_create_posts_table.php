@@ -16,8 +16,12 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('title')->comment('質問のタイトル');
             $table->string('text')->comment('質問内容');
+            $table->string('interpretation')->nullable()->comment('個人の解釈');
+            $table->string('imgpath')->nullable()->comment('解釈の画像');
             $table->unsignedInteger('user_id')->comment('ユーザーID');
+            $table->unsignedInteger('boardgame_id')->comment('ボードゲームID');
         });
     }
 

@@ -2,9 +2,13 @@
 
 @section('content')
 <div class="container mt-5">
-    <h2 class="text-center">
-        {{ $boardgame->name }}
-    </h2>
+    <div class="bg_show_wrap">
+        {{-- ボードゲームのタイトル始め --}}
+        <h1 class="bg_show_title">
+            {{ $boardgame->name }}
+        </h1>
+        {{-- ボードゲームのタイトル終わり --}}
+    </div>
     <div class="row">
         <div class="col-sm-8">
             {{-- {{ dd($post) }} --}}
@@ -48,12 +52,13 @@
                                 {{-- <a href="{{ Route('boardgame',['id' => $post->boardgame_id]) }}">
                                     <h4 class="">{{ $post->boardgame->name }}</h4>
                                 </a> --}}
-                                <a href="{{ Route('show',['id' => $post->id]) }}" class="b">
-                                    <div class="font-weight-bold">{{$post->text}}</div>
+                                <a href="{{ Route('show',['id' => $post->id]) }}" class="">
+                                    <h4 class="font-weight-bold">{{$post->title}}</h4>
                                 </a>
-                                <div class="d-flex justify-content-end">
-                                    <p class="mr-3">{{ $post->user->screen_name}}</p>
-                                    <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
+                                <div class="d-flex justify-content-end user_content">
+                                    <p><img src="../storage/{{$post->user->profile_image}}" alt=""></p>
+                                    <a class = 'mr-3 text-dark' href="{{ Route('show_user',['id' => $post->user->id]) }}">{{ $post->user->screen_name}}</a>
+                                    <p>{{ $post->created_at->format('Y/m/d H:i') }}</p>
                                 </div>
                             </div>
                         </li>

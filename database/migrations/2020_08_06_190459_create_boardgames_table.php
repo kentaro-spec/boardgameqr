@@ -16,8 +16,9 @@ class CreateBoardgamesTable extends Migration
         Schema::create('boardgames', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name')->comment('ボードゲーム名');
+            $table->string('name')->unique()->comment('ボードゲーム名');
             $table->string('boardgame_image')->nullable()->comment('ボードゲーム画像');
+            $table->unsignedInteger('post_count')->comment('ゲームが持つPost数');
         });
     }
 

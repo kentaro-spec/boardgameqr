@@ -97,6 +97,14 @@ main {
 .navbar-light .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
+
+.nav_profile_img img {
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
 /* 検索 */
 .header_nav {
     background-color: #464c56;
@@ -173,7 +181,7 @@ main {
 /* メインビジュアル */
 .mv_cover {
     height: 600px;
-    background-image: url(../img/boardgameqr_mv.jpg);
+    background-image: url(../storage/boardgameqr_mv.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -251,9 +259,18 @@ main {
     top: calc(50% - 1px);
 }
 .mv_mailbtn {
-    padding: 10px 80px;
     font-weight: bold;
     font-size: 14px;
+    background :#117ec6 none;
+    border: none;
+    border-radius: 3px;
+}
+.mv_mailbtn:hover {
+    background-color: #106dab;
+}
+.mv_mailbtn a {
+    padding: 10px 60px;
+    display: block;
 }
 .mv_snsregist {
     font-weight: bold;
@@ -361,12 +378,24 @@ main {
     height: 20px;
     margin-right: 5px;
 }
+.user_content a {
+    color: #333;
+}
 /* 一覧ページ（サイドバー） */
 .category_title {
     font-weight: bold;
     font-size: 12px;
     padding-bottom: 5px;
     border-bottom: 1px solid #aaa;
+}
+.ranking_body p {
+    font-size: 12px;
+    letter-spacing: .05em;
+}
+.ranking_body a {
+    color: #333;
+    font-weight: bold;
+    font-size: 12px;
 }
 
 /* 未解決 */
@@ -415,17 +444,20 @@ footer {
 }
 /* ページトップボタン */
 .page_top {
-    width: 100px;
-    border-radius: 5px;
+    width: 72px;
+    font-size: 10px;
     background: #464c56;
+    border-radius: 3px 3px 0 0;
     margin-left: auto;
     text-align: center;
 }
 .page_top a {
+    letter-spacing: 0.05em;
     display: block;
     color: #fff;
     text-align-last: center;
     text-decoration: none;
+    padding-bottom: 3px;
 }
 .page_top span {
     width: 100%;
@@ -445,6 +477,7 @@ footer {
     background-color: #fff;
 }
 .ranking_first {
+    font-size: 12px;
     background: #fbdb01;
     padding: 5px;
     font-weight: bold;
@@ -464,6 +497,7 @@ footer {
     border-color: transparent transparent #fff;
 }
 .ranking_second {
+    font-size: 12px;
     background: silver;
     padding: 5px;
     font-weight: bold;
@@ -483,6 +517,7 @@ footer {
     border-color: transparent transparent #fff;
 }
 .ranking_third {
+    font-size: 12px;
     background: #bda37f;
     padding: 5px;
     font-weight: bold;
@@ -536,7 +571,7 @@ footer {
 
 /* <====== 質問詳細ページ =====> */
 .qr_info_mv {
-    background: url(../img/boardgameqr_mv.jpg) no-repeat;
+    background: url(../storage/boardgameqr_mv.jpg) no-repeat;
     height: 300px;
     background-size: cover;
     position: relative;
@@ -631,9 +666,9 @@ footer {
     margin-bottom: 40px;
 }
 .questions_ul_wrap h2 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #efefef;
     padding-bottom: 5px;
 }
 .answerWrap {
@@ -644,12 +679,39 @@ footer {
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
+.answer_text_time {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin-right: 5px;
+}
 .not_answer {
     border: 3px dotted #ddd;
     padding: 20px;
     font-weight: bold;
     text-align: center;
 }
+.show_comment_wrap {
+    margin: 50px 0  50px 72px;
+    border-top: 2px solid #efefef;
+}
+.show_comment_body {
+    padding: 15px;
+}
+.show_comment_wrap img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.show_comment_title {
+    font-weight: bold;
+}
+.show_comment_title span {
+    font-size: 10px;
+}
+.show_comment_wrap p {
+    /* border-bottom: 1px solid #ddd */
+}
+
 /* 質問投稿ページ */
 .qr_inner {
     max-width: 600px;
@@ -755,6 +817,9 @@ footer {
     margin-bottom: 50px;
 }
 /* プロフィールページ */
+.mypageHead {
+    border-bottom: 1px solid #ddd;
+}
 .profile_wrap {
     text-align: center;
     border: 1px solid #ddd;
@@ -771,8 +836,14 @@ footer {
     font-weight: bold;
     font-size: 18px;
 }
+.user_boxSelectTab {
+    align-self: flex-end;
+}
+.user_boxSelectTab ul {
+    margin-left: 20px;
+    margin-bottom: 0;
+}
 .user_boxSelectTab li {
-    border: 1px solid #ddd;
     width: 120px;
 }
 .user_boxSelectTab p {
@@ -789,4 +860,82 @@ footer {
 }
 .mypageBody {
     background: #fafafa;
+}
+.user_question_wrap {
+    border: 1px solid #ddd;
+    background: #fff;
+    margin-top: 30px;
+}
+.user_question_wrap_question {
+    font-size: 20px;
+    padding: 16px 16px 8px;
+}
+/* ボードゲームカテゴリーページ */
+.bg_show_wrap {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 16px 24px;
+    border-radius: 6px;
+    margin-bottom: 40px;
+}
+.bg_show_title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* コメントラップ */
+.comment_wrap {
+    margin-bottom: 30px;
+}
+.comment_wrap p {
+    text-align: right;
+}
+.comment_wrap form  {
+    text-align: right;
+}
+.commnet_textarea {
+    border: 2px solid #ddd;
+}
+.comment_btn {
+    text-align: right;
+}
+.comment_btn input {
+    border-radius: 3px;
+    display: inline-block;
+    color: #fff;
+    width: 100px;
+    background: #117ec6;
+    border: none;
+    font-weight: bold;
+    padding: 0 8px;
+    line-height: 32px;
+}
+/* お問い合わせフォーム */
+.contact {
+    background: #fff;
+    height: 98px;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 3px;
+    width: 300px;
+}
+.contact_wrap {
+    margin: 0 0 0 auto;
+    width: 300px;
+}
+.contact_wrap p {
+    font-size: 12px;
+    color: #fff;
+    margin-top: 5px;
+}
+.contact_btn {
+    display: block;
+    background-color: #aaa;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 0;
+    width: 300px;
+    margin-top: 5px;
 }

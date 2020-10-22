@@ -15,10 +15,18 @@ class Answer extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+    public function post() 
+    {
+        return $this->belongsTo('\App\Models\Post');
+    }
+    public function comments(){
+        return $this->hasMany('\App\Models\Comment');
+    }
 
     //突っ込んだユーザーIDの回答を取ってくる
     public function getUserAnswers($user_id){
-        return $this->where('user_id',$user_id)->get();
+        // dd($this->where('user_id',$user_id)->get());
+        return $this->with('post')->where('user_id',$user_id)->get();
     }
     public function getAnswersCount($user_id){
         return $this->where('user_id',$user_id)->count();
