@@ -7,11 +7,18 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 
 class ContactMailController extends Controller
+
+
 {
-    public function contact_mail()
+    public function contact_mail(Request $request)
     {
-        $text = 'ああああ';
-        $to = 'tsalm10@yahoo.co.jp';
-        Mail::to($to)->send(new ContactMail($text));
+        $text = '';
+        $text = $request->input('text');
+        if ($text === '') {
+        }else {
+            $to = 'tsalm10@yahoo.co.jp';
+            Mail::to($to)->send(new ContactMail($text));
+            return back();
+        }
     }
 }
