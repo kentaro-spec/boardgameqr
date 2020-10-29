@@ -41,10 +41,10 @@ Route::get('/search','PostController@search_bgname')->name('search');
 // コメント
 Route::post('/comment','PostController@comment_insert')->name('comment_insert');
 //メールお問い合わせ
-Route::get('sample/mailable/preview', function () {
-    return new App\Mail\ContactMail();
-  });
-Route::get('sample/mailable/send', 'ContactMailController@contact_mail');
+// Route::get('sample/mailable/preview', function () {
+//     return new App\Mail\ContactMail();
+//   });
+Route::post('sample/mailable/send', 'ContactMailController@contact_mail')->name('contact_mail');
 
 Auth::routes();
 
