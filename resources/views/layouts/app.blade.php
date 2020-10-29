@@ -54,9 +54,9 @@
         <footer>
             <div class="container  py-4">
                 <div class="contact_wrap">
-                    <form action="">
+                    <form action="{{Route('contact_mail')}}" method="post">
                         @csrf
-                        <textarea class="contact" name="" id="" cols="30" rows="6"
+                        <textarea class="contact" name="text" cols="30" rows="6"
                             placeholder="BoardgameQAについてご意見お聞かせください"></textarea>
                         <input class="contact_btn" type="submit" value="送信">
                     </form>
