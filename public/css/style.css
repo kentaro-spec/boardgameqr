@@ -923,7 +923,7 @@ footer {
     margin: 0 0 0 auto;
     width: 300px;
 }
-.contact_wrap p {
+.contact_wrap p:last-child {
     font-size: 12px;
     color: #fff;
     margin-top: 5px;
@@ -939,3 +939,11 @@ footer {
     width: 300px;
     margin-top: 5px;
 }
+
+/* エラー文 */
+.validation {
+    display: inline;
+    font-size: 0.8rem;
+    color: #FA5C65;
+    margin: 0.3rem;
+    }

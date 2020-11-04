@@ -58,7 +58,11 @@
                         @csrf
                         <textarea class="contact" name="text" cols="30" rows="6"
                             placeholder="BoardgameQAについてご意見お聞かせください"></textarea>
-                        <input class="contact_btn" type="submit" value="送信">
+                            <p class="validation">@error('text')
+                                {{ $message }}
+                               @enderror
+                            </p>
+                        <input class="contact_btn @error('text') is-invalid @enderror" type="submit" value="送信">
                     </form>
                     <p>頂いたご意見への回答は行っておりません。</p>
                 </div>
