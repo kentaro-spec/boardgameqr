@@ -12,9 +12,13 @@ class ContactMailController extends Controller
 {
     public function contact_mail(Request $request)
     {
-        $text = '';
+        // $text = null;
+        $validateData = $request->validate([
+            'text' => 'required',
+        ]);
         $text = $request->input('text');
-        if ($text === '') {
+        if ($text === null) {
+            return redirect('/');
         }else {
             $to = 'tsalm10@yahoo.co.jp';
             Mail::to($to)->send(new ContactMail($text));
