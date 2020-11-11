@@ -87,6 +87,12 @@ main {
     align-items: center;
 }
 
+/* bootstrapの仕様 */
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
 /* ヘッダー */
 .navbar-light .navbar-toggler {
     border-color: rgba(0,0,0,0);
@@ -274,6 +280,7 @@ main {
 }
 .mv_snsregist {
     font-weight: bold;
+    margin-bottom: 20px;
 }
 @media screen and (max-width: 896px) {
     .mv_inner {
@@ -284,8 +291,12 @@ main {
     .container {
         margin-top: 20px;
     }
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
     .mv_cover {
-        height: 450px;
+        height: 550px;
         margin-bottom: 0;
     }
     .mv_inner {
@@ -315,6 +326,10 @@ main {
     .btn a {
         margin: 0 auto;
     }
+    .tab_list {
+        padding-left: 15px;
+    }
+    
 }
 /* タブ */
 .tab_list {
@@ -488,12 +503,12 @@ footer {
 .ranking_first:after {
     content: "";
     position: absolute;
-    top: 25px;
+    top: 22px;
     left: 0;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 10px 8px;
+    border-width: 0 9px 7px;
     border-color: transparent transparent #fff;
 }
 .ranking_second {

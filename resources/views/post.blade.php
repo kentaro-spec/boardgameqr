@@ -22,6 +22,12 @@
                     <p class="inner_right_or">OR</p>
                 </div>
                 <p class="mv_snsregist">SNSアカウントで登録する</p>
+                <div class="flex is-between">
+                    <a href="/login/twitter"   class="btn btn-secondary">Twitterでログイン</a>
+                    <a href="/login/google" class="btn btn-secondary" role="button">
+                        Googleでログイン
+                    </a>
+                </div>
             </div>
         </div>
     </div>
