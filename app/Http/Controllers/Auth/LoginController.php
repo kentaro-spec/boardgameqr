@@ -65,7 +65,7 @@ class LoginController extends Controller
             // }
             // dd($provider);
             $user = Socialite::driver($provider)->user();
-            dd($user);
+            // dd($user);
         // } catch (\Exception $e) {
         //     return redirect('/')->with('oauth_error', 'ログインに失敗しました');
             // エラーならログイン画面へ転送
