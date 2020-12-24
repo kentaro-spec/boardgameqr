@@ -31,4 +31,5 @@ class CreateLinkedSocialAccountsTable extends Migration
     {
         Schema::dropIfExists('linked_social_accounts');
     }
+    
 }
