@@ -37,5 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+    // linked_social_accountsテーブルとリレーション
+    public function accounts(){
+        return $this->hasMany('App\Models\LinkedSocialAccount');
+    }
 }

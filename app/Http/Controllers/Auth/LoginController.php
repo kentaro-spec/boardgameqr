@@ -41,8 +41,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-<<<<<<< HEAD
-=======
 
     public function redirectToProvider(string $provider)
     {
@@ -59,7 +57,7 @@ class LoginController extends Controller
             // }
             // dd($provider);
             $user = Socialite::driver($provider)->user();
-            dd($user);
+            // dd($user);
         // } catch (\Exception $e) {
         //     return redirect('/')->with('oauth_error', 'ログインに失敗しました');
             // エラーならログイン画面へ転送
@@ -103,5 +101,4 @@ class LoginController extends Controller
         // 取得したusersテーブルの情報を返す
         return $user;
     }
->>>>>>> parent of bcba3aa... twitterログインを実装
 }
